@@ -5,13 +5,13 @@
 
 int main(){
   //example
-  printf("making 3 example nameAges: \n");
+  printf("making 3 example nameAges, note the names are 3 letter random words\nof the form consonant-vowel-consonant and age is between 0-100: \n");
   struct nameAge na1;
-  na1 = example(7357535);
+  na1 = example(time(NULL));
   struct nameAge na2;
-  na2 = example(8234513);
+  na2 = example(time(NULL)+12);
   struct nameAge na3;
-  na3 = example(4745723);
+  na3 = example(time(NULL)+7);
 
   //printing them out
   printf("na1: \t");
