@@ -3,15 +3,15 @@
 #include <time.h>
 #include "headers.h"
 
-int randAge(){
-  srand(time(NULL));
+int randAge(int i){
+  srand(i);
   int age = rand();
   age = age%100;
   return age;
 }
 
-char* randName(){
-  srand(time(NULL));
+char* randName(int i){
+  srand(i);
   //making the letters
   char consonants[21] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
                         'm', 'n','p','q','r','s','t','v','w','x','y','z'};
@@ -36,9 +36,9 @@ char* randName(){
   return nameP;
 }
 
-struct nameAge example(){
-  char *nameP = randName();
-  int z = randAge();
+struct nameAge example(int i){
+  char *nameP = randName(i);
+  int z = randAge(i);
   //putting both pieces into struct
   struct nameAge returnS;
   returnS.n = nameP;
