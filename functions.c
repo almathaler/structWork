@@ -10,8 +10,9 @@ int randAge(int i){
   return age;
 }
 
-char* randName(int i){
+char* randName(int i, char *p){
   srand(i);
+  //printf("testing to see if working, 3 rand nums: %d, %d, %d\n", rand(), rand(), rand());
   //making the letters
   char consonants[21] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
                         'm', 'n','p','q','r','s','t','v','w','x','y','z'};
@@ -23,25 +24,30 @@ char* randName(int i){
   for (f = 0; f<3; f++){
     if (f%2 == 0){
       int y = rand();
+      //printf("Y: %d\n", y);
       y = y%21;
+      //printf("y modded: %d\n", y);
       name[f] = consonants[y];
     }else{
       //aka, name[1] should be a vowel
       int x = rand();
+      //printf("x: %d\n", x);
       x = x%5; //num between 0 and 4
+      //printf("x modded: %d\n", x);
       name[f] = vowels[x];
     }
   }
-  char *nameP = name;
-  return nameP;
+  printf("name looks like: [%c, %c, %c]\n", name[0], name[1], name[2]);
+  p = name;
+  return p;
 }
 
-struct nameAge example(int i){
-  char *nameP = randName(i);
+struct nameAge example(int i, char *p){
+  char *nameA = randName(i, p);
   int z = randAge(i);
   //putting both pieces into struct
   struct nameAge returnS;
-  returnS.n = nameP;
+  returnS.n = nameA;
   returnS.a = z;
   return returnS;
 }
