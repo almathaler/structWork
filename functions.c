@@ -9,17 +9,14 @@ int randAge(int i){
   age = age%100;
   return age;
 }
-
-char* randName(int i, char *p){
+//this must be pointer
+int randName(int i, struct nameAge *param){
   srand(i);
   //printf("testing to see if working, 3 rand nums: %d, %d, %d\n", rand(), rand(), rand());
   //making the letters
   char consonants[21] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
                         'm', 'n','p','q','r','s','t','v','w','x','y','z'};
   char vowels[5] = {'a', 'e', 'i', 'o', 'u'};
-  char name[4];
-  name[3] = '\0'; //end in null
-  //will give like 'tod', 'dod', dad, xud etc
   int f;
   for (f = 0; f<3; f++){
     if (f%2 == 0){
@@ -27,31 +24,29 @@ char* randName(int i, char *p){
       //printf("Y: %d\n", y);
       y = y%21;
       //printf("y modded: %d\n", y);
-      name[f] = consonants[y];
+      (*param).n[f] = consonants[y];
     }else{
       //aka, name[1] should be a vowel
       int x = rand();
       //printf("x: %d\n", x);
       x = x%5; //num between 0 and 4
       //printf("x modded: %d\n", x);
-      name[f] = vowels[x];
+      (*param).n[f] = vowels[x];
     }
   }
-  printf("name looks like: [%c, %c, %c]\n", name[0], name[1], name[2]);
-  p = name;
-  return p;
+  (*param).n[f] = '\0';
+  return 0;
 }
 
-struct nameAge example(int i, char *p){
-  char *nameA = randName(i, p);
+struct nameAge example(int i){
   int z = randAge(i);
   //putting both pieces into struct
   struct nameAge returnS;
-  returnS.n = nameA;
+  randName(i, &returnS);
   returnS.a = z;
   return returnS;
 }
-
+//this can be a copy
 int printStruct(struct nameAge param){
   printf("{");
   char *p = param.n;
@@ -62,9 +57,13 @@ int printStruct(struct nameAge param){
   printf(", %d}\n", param.a);
   return 0;
 }
-
-int modifyStruct(struct nameAge *param, char *newName, int newAge){
-  (*param).n = newName;
-  (*param).a = newAge;
+//this must be pointer
+int modifyStruct(struct nameAge *param, char name[100], int age){
+  int f;
+  while (name[f] != '\0'){
+    (*param).n[f] = name[f];
+    f++;
+  }
+  (*param).a = age;
   return 0;
 }
