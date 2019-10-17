@@ -59,7 +59,7 @@ int printStruct(struct nameAge param){
 }
 //this must be pointer
 int modifyStruct(struct nameAge *param, char name[100], int age){
-  int f;
+  int f = 0;
   while (name[f] != '\0'){
     (*param).n[f] = name[f];
     f++;
