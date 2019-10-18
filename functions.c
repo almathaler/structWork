@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "headers.h"
+#include <string.h>
 
 int randAge(int i){
   srand(i);
@@ -58,12 +59,8 @@ int printStruct(struct nameAge param){
   return 0;
 }
 //this must be pointer
-int modifyStruct(struct nameAge *param, char name[100], int age){
-  int f = 0;
-  while (name[f] != '\0'){
-    (*param).n[f] = name[f];
-    f++;
-  }
+int modifyStruct(struct nameAge *param, char *name, int age){
+  strncpy((*param).n, name, sizeof((*param).n));
   (*param).a = age;
   return 0;
 }

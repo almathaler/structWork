@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "headers.h"
+#include <string.h>
 
 int main(){
   //example
@@ -23,13 +24,12 @@ int main(){
 
   //modifying the values
   printf("now modifying the values of na1 to be 'alma' and '17' \n");
-  char s[5] = {'a', 'l', 'm', 'a', '\0'};
-  modifyStruct(&na1, s, 17);
+  modifyStruct(&na1, "Alma", 17);
   printf("na1 now: \t");
   printStruct(na1);
   printf("modifying na2 to say 'jonathan' '13'\n");
-  char s2[9] = {'j', 'o', 'n', 'a', 't', 'h', 'a', 'n', '\0'};
-  modifyStruct(&na2, s2, 13);
+  //char s2[9] = {'j', 'o', 'n', 'a', 't', 'h', 'a', 'n', '\0'};
+  modifyStruct(&na2, "Jonathan", 13);
   printf("na2 now: \t");
   printStruct(na2);
   return 0;
